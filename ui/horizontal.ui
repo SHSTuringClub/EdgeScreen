@@ -236,9 +236,9 @@ color: white</string>
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>250</y>
+      <y>100</y>
       <width>420</width>
-      <height>700</height>
+      <height>600</height>
      </rect>
     </property>
     <property name="font">

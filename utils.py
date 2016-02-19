@@ -1,19 +1,22 @@
 # -*- coding: utf-8 -*-
 
-import httplib2
-import json
+import os
 import codecs
 
-def get_AQI():
-    h = httplib2.Http("tmp")
-    (resp_headers, content) = h.request("http://www.pm25.in/api/querys/only_aqi.json?city=shanghai"
-                                        "&token=5j1znBVAsnSf5xQyNQyq&stations=no", "GET")
-    try:
-        return json.loads(str(content.decode("unicode-escape")))[0]["aqi"]
-    except Exception as e:
-        return -1
+class news(object):
+    def __init__(self, title, pic):
+        self.title = title
+        self.pic = pic
 
-def getNewsList():
-    with codecs.open("data.json", 'r', 'utf-8') as fp:
-        newsList = json.loads(str(fp.read()))
+def load_news():
+    a = os.listdir("news")
+    newsList = []
+    for i in a:
+        assert isinstance(i, str)
+        if i.endswith("txt"):
+            pic_src = i[:i.rfind(".")]
+            if os.path.exists("news/" + pic_src):
+                with codecs.open("news/" + i, 'r', 'utf-8') as fp:
+                    title = fp.read()
+                newsList.append(news(title, pic_src))
     return newsList

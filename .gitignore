@@ -1,0 +1,5 @@
+# Compiled UI Files
+ui_*.py
+
+# News Directory
+news/
