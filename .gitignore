@@ -1,5 +1,12 @@
 # Compiled UI Files
 ui_*.py
 
-# News Directory
+# News & Picture Directory
 news/
+pic/
+
+# PyCharm project folder
+.idea/
+
+# Notification
+notification.txt

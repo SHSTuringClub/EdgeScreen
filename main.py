@@ -18,16 +18,19 @@
 
 
 import sys
-import ui_ent
-import news
+
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 
-VERSION = r'Edge Screen - v0.1 - 上中图灵社'
+import news_class
+import pic_class
+import ui_ent
+
+VERSION = r'Edge Screen - Release 1.0 - 上中图灵社'
 
 def news_start():
     global newsWindow, newsUI, entUI
     newsWindow = QMainWindow()
-    newsUI = news.news_screen()
+    newsUI = news_class.news_screen()
     newsUI.setupUi(newsWindow)
     try:
         aqi = int(entUI.aqi_input.text())
@@ -44,6 +47,35 @@ def news_start():
     newsWindow.showFullScreen()
 
 
+def news_stop():
+    global newsWindow
+    assert isinstance(newsWindow, QMainWindow)
+    newsWindow.close()
+
+
+def pic_start():
+    global picWindow, picUI, entUI
+    picWindow = QMainWindow()
+    picUI = pic_class.pic_screen()
+    picUI.setupUi(picWindow)
+    try:
+        aqi = int(entUI.aqi_input.text())
+        refreshTime = 1000 * int(entUI.Refresh_input.text())
+        if aqi < 0 or refreshTime <= 0:
+            raise ValueError
+    except ValueError as e:
+        global d
+        d = QMessageBox()
+        d.setText("请输入有效 AQI/刷新时间(正整数)!")
+        d.show()
+        return
+    picUI.init_ui(aqi, refreshTime)
+    picWindow.showFullScreen()
+
+
+def pic_stop():
+    global picWindow
+    picWindow.close()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
@@ -51,6 +83,7 @@ if __name__ == '__main__':
     entUI = ui_ent.Ui_Entrance()
     entUI.setupUi(entWindow)
     entUI.newsButton.clicked.connect(news_start)
+    entUI.picsButton.clicked.connect(pic_start)
     entUI.versionLabel.setText(VERSION)
     entWindow.show()
     sys.exit(app.exec_())

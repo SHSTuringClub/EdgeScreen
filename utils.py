@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import os
 import codecs
+import os
+
 
 class news(object):
     def __init__(self, title, pic):
@@ -20,3 +21,21 @@ def load_news():
                     title = fp.read()
                 newsList.append(news(title, pic_src))
     return newsList
+
+
+def load_pic():
+    a = os.listdir("pic")
+    picSuffix = ['png', 'jpg', 'bmp']
+    picList = []
+    for i in a:
+        assert isinstance(i, str)
+        for j in picSuffix:
+            if i.lower().endswith(j):
+                picList.append(i)
+    return picList
+
+
+def load_notification():
+    with codecs.open("notification.txt", 'r', 'utf-8') as fp:
+        buffer = fp.read()
+    return str(buffer).split('\n')

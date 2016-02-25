@@ -135,7 +135,7 @@ color: white</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-image: url(&quot;logo.png&quot;)</string>
+      <string notr="true">background-image: url(&quot;logo_h.png&quot;)</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -222,8 +222,7 @@ color: white</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/image/sample.jpg);
-</string>
+     <string notr="true">text-align: center</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -231,6 +230,22 @@ color: white</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QLabel" name="picLabel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1200</width>
+       <height>670</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QLabel" name="news">
     <property name="geometry">
