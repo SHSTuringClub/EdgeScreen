@@ -32,9 +32,9 @@ class pic_screen(ui_ver.Ui_MainWindow):
         self.datetime.setText(time.strftime(self.TIMEFORMAT, time.localtime()))
         currentPic = self.picList[self.picIndex]
         currentNoti = self.notiList[self.notiIndex]
-        Pic = QtGui.QPixmap("pic/" + currentPic)
-        self.Pic = Pic.scaled(1350, 900, 1)
-        # 1 is Qt::KeepAspectRadio
+        Pic = QtGui.QPixmap(currentPic)
+        self.Pic = Pic.scaled(1350, 900, 1, 1)
+        # Qt::KeepAspectRadio, Qt::SmoothTransformation (bilinear)
         self.picLabel.setPixmap(self.Pic)
         if not currentNoti == "":
             self.notice.setText(currentNoti)
@@ -53,7 +53,8 @@ class pic_screen(ui_ver.Ui_MainWindow):
         self.TIMEFORMAT = '%Y.%m.%d %H:%M'
         self.credits = [r'Crafted by SHS Turing Club with ❤',
                         r'Design: Viola Lin',
-                        r'Code: Genesis Di & Peter Zheng']
+                        r'Code: Genesis Di & Peter Zheng',
+                        r'Suggestions: invisiblearts@outlook.com']
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_ui)
         self.timer.start(refreshTime)

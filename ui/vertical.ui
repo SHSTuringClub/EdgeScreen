@@ -195,10 +195,10 @@
     <widget class="QFrame" name="logo">
      <property name="geometry">
       <rect>
-       <x>35</x>
-       <y>35</y>
-       <width>374</width>
-       <height>125</height>
+       <x>10</x>
+       <y>20</y>
+       <width>419</width>
+       <height>159</height>
       </rect>
      </property>
      <property name="styleSheet">

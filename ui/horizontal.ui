@@ -70,9 +70,9 @@ color: white</string>
     <widget class="QLabel" name="datetime">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>20</y>
-       <width>420</width>
+       <width>430</width>
        <height>60</height>
       </rect>
      </property>
@@ -83,13 +83,13 @@ color: white</string>
       </font>
      </property>
      <property name="text">
-      <string>2016.02.16 13:50</string>
+      <string>2016.03.03 20:00</string>
      </property>
     </widget>
     <widget class="QLabel" name="aqi">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>100</y>
        <width>400</width>
        <height>70</height>
@@ -130,8 +130,8 @@ color: white</string>
       <rect>
        <x>20</x>
        <y>20</y>
-       <width>573</width>
-       <height>127</height>
+       <width>581</width>
+       <height>147</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -216,9 +216,9 @@ color: white</string>
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>90</y>
-      <width>1200</width>
-      <height>670</height>
+      <y>40</y>
+      <width>1240</width>
+      <height>820</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -235,8 +235,8 @@ color: white</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1200</width>
-       <height>670</height>
+       <width>1240</width>
+       <height>820</height>
       </rect>
      </property>
      <property name="text">

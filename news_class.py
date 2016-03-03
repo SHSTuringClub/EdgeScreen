@@ -33,9 +33,9 @@ class news_screen(ui_hor.Ui_Horizontal):
         currentNews = self.newsList[self.newsIndex]
         currentNoti = self.notiList[self.notiIndex]
         assert isinstance(currentNews, utils.news)
-        newsP = QtGui.QPixmap("news/" + currentNews.pic)
-        self.newsP = newsP.scaled(1200, 670, 1)
-        # 1 is Qt::KeepAspectRadio
+        newsP = QtGui.QPixmap(currentNews.pic)
+        self.newsP = newsP.scaled(1240, 820, 1, 1)
+        # Qt::KeepAspectRadio, Qt::SmoothTransformation (bilinear)
         self.picLabel.setPixmap(self.newsP)
         self.news.setText(currentNews.title)
         if not currentNoti == "":
@@ -55,7 +55,8 @@ class news_screen(ui_hor.Ui_Horizontal):
         self.TIMEFORMAT = '%Y.%m.%d %H:%M'
         self.credits = [r'Crafted by SHS Turing Club with ❤',
                         r'Design: Viola Lin',
-                        r'Code: Genesis Di & Peter Zheng']
+                        r'Code: Genesis Di & Peter Zheng',
+                        r'Suggestions: invisiblearts@outlook.com']
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_ui)
         self.timer.start(refreshTime)
