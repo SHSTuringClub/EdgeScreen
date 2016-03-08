@@ -54,7 +54,7 @@ class pic_screen(ui_ver.Ui_MainWindow):
         self.credits = [r'Crafted by SHS Turing Club with ❤',
                         r'Design: Viola Lin',
                         r'Code: Genesis Di & Peter Zheng',
-                        r'Suggestions: invisiblearts@outlook.com']
+                        r'Edge Screen - Milestone 2']
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_ui)
         self.timer.start(refreshTime)

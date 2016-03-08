@@ -25,7 +25,7 @@ import news_class
 import pic_class
 import ui_ent
 
-VERSION = r'Edge Screen - Milestone 1 - 上中图灵社'
+VERSION = r'Edge Screen - Milestone 2 - 上中图灵社'
 
 
 def news_start():

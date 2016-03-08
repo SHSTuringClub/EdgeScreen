@@ -32,7 +32,7 @@ class news_screen(ui_hor.Ui_Horizontal):
         self.datetime.setText(time.strftime(self.TIMEFORMAT, time.localtime()))
         currentNews = self.newsList[self.newsIndex]
         currentNoti = self.notiList[self.notiIndex]
-        assert isinstance(currentNews, utils.news)
+        assert isinstance(currentNews, utils.News)
         newsP = QtGui.QPixmap(currentNews.pic)
         self.newsP = newsP.scaled(1240, 820, 1, 1)
         # Qt::KeepAspectRadio, Qt::SmoothTransformation (bilinear)
@@ -56,7 +56,7 @@ class news_screen(ui_hor.Ui_Horizontal):
         self.credits = [r'Crafted by SHS Turing Club with ❤',
                         r'Design: Viola Lin',
                         r'Code: Genesis Di & Peter Zheng',
-                        r'Suggestions: invisiblearts@outlook.com']
+                        r'Edge Screen - Milestone 2']
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_ui)
         self.timer.start(refreshTime)
