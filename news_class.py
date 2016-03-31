@@ -19,7 +19,7 @@
 import random
 import time
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 import ui_hor
 import utils
@@ -46,9 +46,9 @@ class news_screen(ui_hor.Ui_Horizontal):
         self.notiIndex = self.notiIndex + 1 if self.notiIndex < self.notiList.__len__() - 1 else 0
         self.credit.setText(self.credits[credits_index])
 
-    def init_ui(self, aqi, refreshTime):
+    def init_ui(self, aqi, refreshTime, path='news'):
         self.aqi_value = aqi
-        self.newsList = utils.load_news()
+        self.newsList = utils.load_news(path)
         self.newsIndex = 0
         self.notiList = utils.load_notification()
         self.notiIndex = 0
@@ -56,8 +56,10 @@ class news_screen(ui_hor.Ui_Horizontal):
         self.credits = [r'Crafted by SHS Turing Club with ❤',
                         r'Design: Viola Lin',
                         r'Code: Genesis Di & Peter Zheng',
-                        r'Edge Screen - Milestone 2']
+                        r'Edge Screen is OSS Licensed under GPLv3']
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_ui)
         self.timer.start(refreshTime)
+        self.centralwidget.setCursor(QtCore.Qt.BlankCursor)
+        self.exit_hotkey = QtWidgets.QShortcut(QtGui.QKeySequence(QtCore.Qt.Key_Escape), self.centralwidget)
         self.update_ui()

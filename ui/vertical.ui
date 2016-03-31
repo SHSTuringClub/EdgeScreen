@@ -50,13 +50,13 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="datetime">
+    <widget class="QLabel" name="date">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>30</y>
+       <y>20</y>
        <width>400</width>
-       <height>150</height>
+       <height>75</height>
       </rect>
      </property>
      <property name="font">
@@ -70,19 +70,19 @@
 </string>
      </property>
      <property name="text">
-      <string>2016.02.24 20:40</string>
+      <string>2016.02.24</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="aqi">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>240</y>
+       <y>230</y>
        <width>400</width>
-       <height>60</height>
+       <height>100</height>
       </rect>
      </property>
      <property name="font">
@@ -98,7 +98,33 @@
       <string>AQI: 100</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="time">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>110</y>
+       <width>400</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>VogueSans</family>
+       <pointsize>108</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white
+</string>
+     </property>
+     <property name="text">
+      <string>13:44</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>
@@ -131,7 +157,7 @@
      </property>
      <property name="font">
       <font>
-       <family>Source Han Sans CN</family>
+       <family>思源黑体 CN Light</family>
        <pointsize>30</pointsize>
       </font>
      </property>
@@ -152,14 +178,14 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>500</y>
+       <y>450</y>
        <width>400</width>
-       <height>40</height>
+       <height>100</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <family>Source Han Sans CN</family>
+       <family>思源黑体 CN Light</family>
        <pointsize>24</pointsize>
       </font>
      </property>
@@ -171,6 +197,9 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>

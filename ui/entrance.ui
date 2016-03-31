@@ -31,6 +31,27 @@
   <property name="windowTitle">
    <string>Project Edge Screen - 欢迎</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+background-color: white;
+}
+
+QPushButton{
+color: white;
+border-color: #2e6da4;
+background-color: #337ab7;
+border-radius:20px;
+}
+QPushButton:hover{
+background-color:#286090;
+border-color:#204d74;
+}
+QPushButton:checked{
+background-color:#286090;
+border-color:#204d74;
+
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="newsButton">
     <property name="geometry">
@@ -46,6 +67,9 @@
       <family>思源黑体 CN Regular</family>
       <pointsize>14</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>开始时政播放</string>
@@ -100,7 +124,7 @@
     </property>
     <property name="font">
      <font>
-      <family>Source Sans Pro</family>
+      <family>思源黑体 CN Regular</family>
       <pointsize>12</pointsize>
      </font>
     </property>
@@ -184,14 +208,24 @@
      <string/>
     </property>
    </widget>
-   <widget class="QListView" name="listView">
+   <widget class="QPushButton" name="linkStartButton">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>380</x>
       <y>20</y>
-      <width>301</width>
-      <height>351</height>
+      <width>400</width>
+      <height>360</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Source Sans Pro</family>
+      <pointsize>100</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Link
+Start!!</string>
     </property>
    </widget>
   </widget>

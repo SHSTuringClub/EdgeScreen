@@ -19,16 +19,24 @@
 
 import sys
 
+from PyQt5 import QtCore
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 
 import news_class
 import pic_class
 import ui_ent
+import utils
 
-VERSION = r'Edge Screen - Milestone 2 - 上中图灵社'
+VERSION = r'Edge Screen - 上中图灵社'
 
 
-def news_start():
+def news_stop():
+    global newsWindow
+    assert isinstance(newsWindow, QMainWindow)
+    newsWindow.close()
+
+
+def news_start(path='news'):
     global newsWindow, newsUI, entUI
     newsWindow = QMainWindow()
     newsUI = news_class.news_screen()
@@ -38,23 +46,23 @@ def news_start():
         refreshTime = 1000 * int(entUI.Refresh_input.text())
         if aqi < 0 or refreshTime <= 0:
             raise ValueError
-    except ValueError as e:
+    except ValueError:
         global d
         d = QMessageBox()
         d.setText("请输入有效 AQI/刷新时间(正整数)!")
         d.show()
         return
-    newsUI.init_ui(aqi, refreshTime)
+    newsUI.init_ui(aqi, refreshTime, path)
     newsWindow.showFullScreen()
+    newsUI.exit_hotkey.activated.connect(news_stop)
 
 
-def news_stop():
-    global newsWindow
-    assert isinstance(newsWindow, QMainWindow)
-    newsWindow.close()
+def pic_stop():
+    global picWindow
+    picWindow.close()
 
 
-def pic_start():
+def pic_start(path='pic'):
     global picWindow, picUI, entUI
     picWindow = QMainWindow()
     picUI = pic_class.pic_screen()
@@ -70,13 +78,38 @@ def pic_start():
         d.setText("请输入有效 AQI/刷新时间(正整数)!")
         d.show()
         return
-    picUI.init_ui(aqi, refreshTime)
+    picUI.init_ui(aqi, refreshTime, path)
     picWindow.showFullScreen()
+    picUI.exit_hotkey.activated.connect(pic_stop)
 
 
-def pic_stop():
-    global picWindow
-    picWindow.close()
+def link_start():
+    global picWindow, newsWindow, timer
+    try:
+        picWindow.close()
+    except NameError:
+        pass
+
+    try:
+        newsWindow.close()
+    except NameError:
+        pass
+
+    try:
+        timer.stop()
+    except NameError:
+        pass
+
+    tl = utils.Timeline(utils.load_timeline())
+    now = tl.get_now()
+    type = 0 if now[0] == '时政' or now[0] == 'news' else 1
+    start = [news_start, pic_start]
+    time = now[2]
+    assert isinstance(time, int)
+    start[type](now[1])
+    timer = QtCore.QTimer()
+    timer.timeout.connect(link_start)
+    timer.start(time * 60000)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
@@ -85,6 +118,7 @@ if __name__ == '__main__':
     entUI.setupUi(entWindow)
     entUI.newsButton.clicked.connect(news_start)
     entUI.picsButton.clicked.connect(pic_start)
+    entUI.linkStartButton.clicked.connect(link_start)
     entUI.versionLabel.setText(VERSION)
     entWindow.show()
     sys.exit(app.exec_())

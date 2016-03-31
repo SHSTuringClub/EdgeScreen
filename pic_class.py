@@ -19,7 +19,7 @@
 import random
 import time
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 import ui_ver
 import utils
@@ -29,7 +29,8 @@ class pic_screen(ui_ver.Ui_MainWindow):
     def update_ui(self):
         credits_index = random.randint(0, self.credits.__len__() - 1)
         self.aqi.setText("AQI: " + str(self.aqi_value))
-        self.datetime.setText(time.strftime(self.TIMEFORMAT, time.localtime()))
+        self.date.setText(time.strftime(self.DATEFORMAT, time.localtime()))
+        self.time.setText(time.strftime(self.TIMEFORMAT, time.localtime()))
         currentPic = self.picList[self.picIndex]
         currentNoti = self.notiList[self.notiIndex]
         Pic = QtGui.QPixmap(currentPic)
@@ -44,18 +45,21 @@ class pic_screen(ui_ver.Ui_MainWindow):
         self.notiIndex = self.notiIndex + 1 if self.notiIndex < self.notiList.__len__() - 1 else 0
         self.credit.setText(self.credits[credits_index])
 
-    def init_ui(self, aqi, refreshTime):
+    def init_ui(self, aqi, refreshTime, path='pic'):
         self.aqi_value = aqi
-        self.picList = utils.load_pic()
+        self.picList = utils.load_pic(path)
         self.picIndex = 0
         self.notiList = utils.load_notification()
         self.notiIndex = 0
-        self.TIMEFORMAT = '%Y.%m.%d %H:%M'
+        self.TIMEFORMAT = '%H:%M'
+        self.DATEFORMAT = '%Y.%m.%d'
         self.credits = [r'Crafted by SHS Turing Club with ❤',
                         r'Design: Viola Lin',
                         r'Code: Genesis Di & Peter Zheng',
-                        r'Edge Screen - Milestone 2']
+                        r'Edge Screen is OSS Licensed under GPLv3']
+        self.exit_hotkey = QtWidgets.QShortcut(QtGui.QKeySequence(QtCore.Qt.Key_Escape), self.centralwidget)
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_ui)
         self.timer.start(refreshTime)
+        self.centralwidget.setCursor(QtCore.Qt.BlankCursor)
         self.update_ui()
